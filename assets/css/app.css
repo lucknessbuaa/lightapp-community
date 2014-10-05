@@ -1,0 +1,192 @@
+body {
+    color: #333;
+    line-height: 1.42;
+}
+
+.navigator {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2000;
+    width: 40px;
+    height: 40px;
+}
+
+.navigator .menu-item {
+    display: block;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+}
+
+.navigator .wheel-button {
+    background: url(../images/menu.png) center center no-repeat #65b04b;
+    background-size: 20px;
+}
+
+.navigator .wheel-button.weak {
+    opacity: .2 !important;
+}
+
+.navigator .wheel-button.active.weak {
+    opacity: 1 !important;
+}
+
+.navigator > .wheel > .item {
+    width: 40px;
+    height: 40px;
+}
+
+.navigator .wheel .personality > a {
+    background: url(../images/personality.png) center center no-repeat #fff;
+    background-size: 20px;
+}
+
+.navigator .wheel .resume > a {
+    background: url(../images/resume.png) center center no-repeat #fff;
+    background-size: 20px;
+}
+
+.navigator .wheel .aboutme > a {
+    background: url(../images/aboutme.png) center center no-repeat #fff;
+    background-size: 20px;
+}
+
+.navigator .wheel .feedback > a {
+    background: url(../images/feedback.png) center center no-repeat #fff;
+    background-size: 24px;
+}
+
+.app-page.home {
+    z-index: 1000;
+}
+
+.app-page.home > .app-content {
+    background: url(../images/bg.png) top center no-repeat #3d7030;
+    background-size: auto 100%;
+}
+
+.app-page.home > .app-content .search {
+    display: none;
+    background: #297a1b;
+    border: 1px solid #5fa647;
+    border-radius: 8px;
+
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.app-page.home > .app-content .search > input[type=text] {
+    padding: 6px 12px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    background: url(../images/search-bg.png) center center no-repeat transparent;
+    background-size: auto 70%;
+    font-size: 14px;
+}
+
+.app-page.home > .app-content .search > input[type=text]:hover {
+    outline: none;
+    color: #ccc;
+    background-image: none;
+}
+
+.app-page.home > .app-content > .news {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.app-page.home > .app-content > .news > li {
+    list-style: none;
+    position: relative;
+    background: #f9f9f9;
+    box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, .15);
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border: 1px solid #F1F1F1;
+    padding: 10px 12px 30px;
+}
+
+.app-page.home > .app-content > .news > li:after {
+    display: block;
+    position: absolute;
+    background: url(../images/news-bottom.png) center center no-repeat transparent;
+    bottom: -1px;
+    right: -1px;
+    width: 80px;
+    height: 30px;
+    background-size: 100%;
+    content: " ";
+}
+
+.app-page.home > .app-content > .news > li:before {
+    display: block;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    background: url(../images/sticker.png) center center no-repeat transparent;
+    width: 60px;
+    margin-left: -30px;
+    height: 30px;
+    background-size: 100%;
+    content: " ";
+}
+
+.article > .title > .title-inner {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 83%;
+    overflow: hidden;
+}
+
+.article.headline > .title:after {
+    content: "置顶";
+    color: #f1f1f1;
+    background: #fa5433;
+    font-size: 14px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 5px;
+    padding: 0px 3px;
+}
+
+.article > .detail {
+    margin-bottom: 5px;
+    color: gray;
+}
+
+.article > .detail > .tag {
+    color: gray;
+    font-size: 14px;
+    background: #D9F7D3;
+    border: 1px solid #ccc;
+}
+
+.article > .cover > img {
+    width: 100%;
+}
+
+.article > .desc {
+    color: gray;
+} 
+
+.app-page.detail {
+    z-index: 1010;
+    background: #f7f7f7;
+}
+
+.app-page.detail .article {
+    padding: 20px;
+}
+

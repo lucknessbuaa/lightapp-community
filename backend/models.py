@@ -13,8 +13,14 @@ ACTIVITY_CHOICES = (
 
 class News(models.Model):
     type = models.CharField(verbose_name=u'类型', choices=ACTIVITY_CHOICES, max_length=20)
+    cover = models.URLField(verbose_name=u'封面')
     content = models.TextField(verbose_name=u'内容')
     title = models.CharField(verbose_name=u'标题', max_length=255)
+    date = models.DateTimeField(verbose_name=u'创建时间', auto_now=True, editable=False)
+    headline = models.BooleanField(verbose_name=u'头条')
+
+    def __unicode__(self):
+        return self.title
 
 
 class Participants(models.Model):

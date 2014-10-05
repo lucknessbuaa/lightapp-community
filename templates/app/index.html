@@ -6,11 +6,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="{{ STATIC_URL }}components/jquery.wheelmenu/wheelmenu.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}components/appjs/dist/app.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/app.css">
+
     <title>百度直达号-社团</title>
 </head>
 
 <body>
+    <div class="app-page home" data-page="news">
+        <div class="app-content">
+            <div class="search">
+                <input type="text">
+            </div>
+            <ul class="news">
+            </ul>
+        </div>
+    </div>
 
+    <div class="app-page detail" data-page="news-detail">
+        <div class="app-content">
+            <div class="article"></div>
+            <form class='app-section'>
+                <input class='app-input' type='text' name='name' placeholder='姓名'>
+                <textarea class='app-input' name='desc' placeholder='简述'></textarea>
+                <div class="app-button">报名</div>
+            </form>
+        </div>
+    </div>
+
+    <div class='navigator'>
+        <a href="#wheel2" class="menu-item wheel-button ne"></a>
+        <ul id="wheel2" class="wheel">
+            <li class="item personality">
+                <a class='menu-item' href="#personality"></a>
+            </li>
+            <li class="item resume">
+                <a class='menu-item' href="#resume"></a>
+            </li>
+            <li class="item aboutme">
+                <a class='menu-item' href="#aboutme"></a>
+            </li>
+            <li class="item feedback">
+                <a class='menu-item' href="#feedback"></a>
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}components/multiline/browser.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}components/velocity/velocity.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}components/jquery.wheelmenu/jquery.wheelmenu.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}components/appjs/dist/app.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/app.js"></script>
 </body>
 
 </html>
