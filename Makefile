@@ -1,6 +1,6 @@
 host:=0.0.0.0
 port:=9000
-settings:=base/develop
+settings:=base.develop
 activate_venv=source venv/bin/activate
  
 debug:
@@ -40,7 +40,7 @@ venv:
 	
 deps:
 	$(activate_venv) && \
-	pip install -r requirements.txt \
+	pip install -r requirements.txt && \
 	pip install -r requirements-prod.txt 
 	-npm install
 	-bower install
