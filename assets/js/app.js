@@ -1,3 +1,8 @@
+Blend.lightInit({
+    ak: 'NI3lwuv8vVGBGGC0mzmAmIL3', //从百度开放云平台获取
+    module: ["app", "account"] //根据勾选的模块生成
+});
+
 function getNews() {
     return $.get("/app/api/news", {}, "json");
 }

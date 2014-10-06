@@ -1,16 +1,30 @@
 # coding: utf-8
+import logging
 
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
 from django_render_json import json as r_json
+from django_render_json import render_json
 
 import truncate
 from backend.models import News, Feedback
 
 
+logger = logging.getLogger(__name__)
+
 def index(request):
     return render(request, 'app/index.html')
+
+
+@csrf_exempt
+def callback(request):
+    logger.debug(request.POST)
+    logger.debug(request.GET)
+
+    return render_json({
+        'hello': 'world'
+    });
 
 
 @r_json
