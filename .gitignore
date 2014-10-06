@@ -91,3 +91,4 @@ node_modules
 venv
 assets/components
 *.swp
+nohup.out
