@@ -1,11 +1,12 @@
 # coding: utf-8
 
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
 from django_render_json import json as r_json
 
 import truncate
-from backend.models import News
+from backend.models import News, Feedback
 
 
 def index(request):
@@ -27,3 +28,29 @@ def news(request):
         'news': map(map_news, News.objects.all().order_by('-headline'))
     }
 
+
+@csrf_exempt
+@r_json
+def feedback(request):
+    # TODO implement it!
+    return {
+        'ret_code': 0
+    }
+
+
+@csrf_exempt
+@r_json
+def signup(request):
+    # TODO implement it!
+    return {
+        'ret_code': 0
+    }
+
+
+@csrf_exempt
+@r_json
+def signupActivity(request):
+    # TODO implement it!
+    return {
+        'ret_code': 0
+    }

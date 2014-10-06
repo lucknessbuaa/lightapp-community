@@ -92,3 +92,4 @@ venv
 assets/components
 *.swp
 nohup.out
+sqlite3.db

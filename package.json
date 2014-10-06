@@ -16,9 +16,15 @@
     "url": "https://github.com/limijiaoyin/lightapp-community/issues"
   },
   "devDependencies": {
-    "gulp-base64": "~0.1.2",
     "gulp": "~3.8.8",
-    "gulp-tinypng": "~1.0.2",
-    "gulp-imagemin": "~1.0.1"
+    "gulp-base64": "~0.1.2",
+    "gulp-changed": "^1.0.0",
+    "gulp-concat": "^2.4.1",
+    "gulp-if": "^1.2.5",
+    "gulp-imagemin": "~1.0.1",
+    "gulp-match": "^0.2.1",
+    "gulp-sass": "^1.0.0",
+    "gulp-tinypng": "jarvys/gulp-tinypng.git",
+    "gulp-uglify": "^1.0.1"
   }
 }

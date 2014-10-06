@@ -1,9 +1,10 @@
 host:=0.0.0.0
 port:=9000
+settings:=base/develop
 activate_venv=source venv/bin/activate
  
 debug:
-	$(activate_venv) && ./manage.py runserver $(host):$(port)
+	$(activate_venv) && ./manage.py runserver $(host):$(port) --settings=$(settings)
  
 start-uwsgi:
 	$(activate_venv) \
@@ -38,13 +39,23 @@ venv:
 	virtualenv venv --python=python2.7
 	
 deps:
-	$(activate_venv) && pip install -r requirements.txt
+	$(activate_venv) && \
+	pip install -r requirements.txt \
+	pip install -r requirements-prod.txt 
 	-npm install
 	-bower install
+
+deps-osx:
+	$(activate_venv) && \
+	pip install -r requirements.txt
+	-npm install
+	-bower install
+
 	
 .PHONY: debug \
 	db \
 	deps \
+	deps-osx \
 	venv \
 	collectstatic \
 	reload-uwsgi \

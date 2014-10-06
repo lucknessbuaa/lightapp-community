@@ -2,8 +2,25 @@ function getNews() {
     return $.get("/app/api/news", {}, "json");
 }
 
-function signup() {
-    return $.post("/app/api/signup", {}, "json");
+function signup(name, desc) {
+    return $.post("/app/api/signup", {
+        name: name,
+        desc: desc
+    }, "json");
+}
+
+function signupActivity(newsId, name, desc) {
+    return $.post("/app/api/signupActivity", {
+        id: newsId,
+        name: name,
+        desc: desc
+    }, "json");
+}
+
+function feedback(message) {
+    return $.post('/app/api/feedback', {
+        message: message
+    }, "json");
 }
 
 function HomeController(page) {
@@ -81,14 +98,33 @@ function NewsDetailController(page, detail) {
     this.$detail = this.$page.find('.article');
 
     this.$form = this.$page.find('form');
+    this.form = this.$form[0];
     this.$button = this.$form.find('.app-button');
 
     this.$form.submit(function(e) {
         e.preventDefault();
         this.$button.addClass('loading');
-        signup.then(function() {}).always(function() {
-            this.$button.removeClass('loading');
-        }.bind(this));
+        signupActivity(this.detail.id, this.form.name.value, this.form.desc.value).then(function(data) {
+            if (data.ret_code !== 0) {
+                return swal({
+                    title: '网络异常',
+                    type: 'error',
+                    confirmButtonText: '确认'
+                });
+            }
+
+            swal({
+                title: '发送成功',
+                type: 'success',
+                confirmButtonText: '确认'
+            });
+        }, function() {
+            swal({
+                title: '网络异常',
+                type: 'error',
+                confirmButtonText: '确认'
+            });
+        });
     }.bind(this));
 
     this.tpl = _.template(multiline(function() {
@@ -125,13 +161,123 @@ NewsDetailController.onReady = function() {
 
 App.controller('news-detail', NewsDetailController);
 
+App.controller('feedback', function(page) {
+    var $form = $(page).find('form');
+    var form = $form[0];
+
+    $form.submit(function(e) {
+        e.preventDefault();
+        feedback(form.feedback.value).then(function(data) {
+            if (data.ret_code !== 0) {
+                return swal({
+                    title: '网络异常',
+                    type: 'error',
+                    confirmButtonText: '确认'
+                });
+            }
+
+            swal({
+                title: '发送成功',
+                type: 'success',
+                confirmButtonText: '确认'
+            });
+        }, function() {
+            swal({
+                title: '网络异常',
+                type: 'error',
+                confirmButtonText: '确认'
+            });
+        });
+    })
+});
+
+App.controller('resume', function(page) {
+    var $form = $(page).find('form');
+    var form = $form[0];
+
+    $form.submit(function(e) {
+        e.preventDefault();
+        signup(form.name.value, form.desc.value).then(function(data) {
+            if (data.ret_code !== 0) {
+                return swal({
+                    title: '网络异常',
+                    type: 'error',
+                    confirmButtonText: '确认'
+                });
+            }
+
+            swal({
+                title: '发送成功',
+                type: 'success',
+                confirmButtonText: '确认'
+            });
+        }, function() {
+            swal({
+                title: '网络异常',
+                type: 'error',
+                confirmButtonText: '确认'
+            });
+        });
+    });
+});
+
+var AppRouter = Backbone.Router.extend({
+    routes: {
+        'aboutme': 'aboutme',
+        'resume': 'resume',
+        'feedback': 'feedback',
+        'news': 'news'
+    },
+
+    aboutme: function() {
+
+    },
+
+    resume: function() {
+
+    },
+
+    news: function() {
+        App.load('news');
+    },
+
+    feedback: function() {
+        App.load('news', function() {
+            App.load('feedback');
+        });
+    }
+});
+
 $(function() {
-    App.load('news');
+    var router = new AppRouter();
+    if (!Backbone.history.start({
+        hashChange: true
+    })) {
+        Backbone.history.navigate('news', {
+            replace: true,
+            trigger: true
+        });
+    }
 
     $(".wheel-button").wheelmenu({
         trigger: "click",
         animation: "fly",
         animationSpeed: "fast",
         angle: "NE",
+    });
+
+    $('.wheel .aboutme a').on('tap', function(e) {
+        e.preventDefault();
+        App.load('aboutme');
+    });
+
+    $('.wheel .feedback a').on('tap', function(e) {
+        e.preventDefault();
+        App.load('feedback');
+    });
+
+    $('.wheel .resume a').on('tap', function(e) {
+        e.preventDefault();
+        App.load('resume');
     });
 });
