@@ -21,6 +21,10 @@ class AccountManager(models.Manager):
         account.save()
         return account;
 
+    def getAccount(self, user):
+        accounts = self.filter(user=user)
+        return accounts[0] if accounts.count() > 0 else None
+
 
 class Account(models.Model):
     user = models.ForeignKey(User)
@@ -55,14 +59,27 @@ class News(models.Model):
     def __unicode__(self):
         return self.title
 
+    @property
+    def tags(self):
+        return map(lambda item: item[1], \
+                filter(lambda item: item[0] == self.type, \
+                    ACTIVITY_CHOICES))
+
 
 class Participants(models.Model):
     account = models.ForeignKey(Account)
+    message = models.CharField(verbose_name=u'信息', max_length=255, null=True)
+    name = models.CharField(verbose_name=u'姓名', max_length=255, null=True)
     news = models.ForeignKey(News)
 
 
 class Feedback(models.Model):
     message = models.CharField(verbose_name=u'信息', max_length=255)
-    account = models.ForeignKey(Account)
+    account = models.ForeignKey(Account, null=True)
 
+
+class Resume(models.Model):
+    message = models.CharField(verbose_name=u'信息', max_length=255, null=True)
+    name = models.CharField(verbose_name=u'姓名', max_length=255, null=True)
+    account = models.ForeignKey(Account, null=True)
 

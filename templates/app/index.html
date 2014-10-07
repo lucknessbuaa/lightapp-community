@@ -31,7 +31,13 @@
         </div>
     </div>
 
-    <div class="app-page detail" data-page="news-detail">
+    <div class="app-page detail transparent" data-page="news-detail">
+        <div class="app-topbar">
+            <div class="app-button" data-back>
+                <i class="fa fa-chevron-left"></i>
+            </div>
+            <div class="app-title"></div>
+        </div>
         <div class="app-content">
             <div class="article"></div>
             <form>
@@ -42,7 +48,13 @@
         </div>
     </div>
 
-    <div class="app-page aboutme" data-page="aboutme">
+    <div class="app-page aboutme transparent" data-page="aboutme">
+        <div class="app-topbar">
+            <div class="app-button" data-back>
+                <i class="fa fa-chevron-left"></i>
+            </div>
+            <div class="app-title">关于我们</div>
+        </div>
         <div class="app-content">
             <p class='logo'>
                 <img src="{{ STATIC_URL }}images/logo.png">
@@ -55,7 +67,14 @@
         </div>
     </div>
 
-    <div class="app-page feedback" data-page="feedback">
+    <div class="app-page feedback transparent" data-page="feedback">
+        <div class="app-topbar">
+            <div class="app-button" data-back>
+                <i class="fa fa-chevron-left"></i>
+            </div>
+            <div class="app-title">意见反馈</div>
+        </div>
+
         <div class="app-content">
             <form>
                 <textarea class='app-input' name='feedback' rows='8' placeholder="将您的宝贵意见反馈给我们..."></textarea>
@@ -64,7 +83,16 @@
         </div>
     </div>
 
-    <div class="app-page resume" data-page="resume">
+    <div class="app-page resume transparent" data-page="resume">
+        <div class="app-topbar">
+            <div class="app-button" data-back>
+                <i class="fa fa-chevron-left"></i>
+            </div>
+            <div class="app-title">
+                投递简历
+            </div>
+        </div>
+
         <div class="app-content">
             <form>
                 <input class='app-input' name='name' type='text' placeholder="姓名">
@@ -74,14 +102,20 @@
         </div>
     </div>
 
-    <div class="app-page login" data-page="login">
+    <div class="app-page login transparent" data-page="login">
+        <div class="app-topbar transparent">
+            <div class="app-button" data-back>
+                <i class="fa fa-chevron-left"></i>
+            </div>
+            <div class="app-title">个人信息</div>
+        </div>
         <div class="app-content">
             <div class="wrapper">
                 <p class='head'>
                     <span class="header"></span>
                 </p>
 
-                <p class="baidu">
+                <p class="baidu" style='display: none;'>
                     <button class="bd-btn-block">
                         <i class="icon-baidu"></i> 使用百度账号登录
                     </button>
@@ -96,6 +130,12 @@
                         <i class="icon-qq"></i> QQ登录
                     </button>
                 </div>
+
+                <p class="logout" style='display: none;'>
+                    <button class="bd-btn-block">
+                        退出登录 
+                    </button>
+                </p>
             </div>
         </div>
     </div>

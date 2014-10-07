@@ -5,7 +5,7 @@ from urllib import urlencode
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout as _logout
 from django.forms.models import model_to_dict
 from django_render_json import json as r_json
 from django_render_json import render_json
@@ -13,7 +13,7 @@ from django_render_json import render_json
 import truncate
 import requests
 from django_auth_json import login_required
-from backend.models import News, Feedback, Account
+from backend.models import News, Feedback, Account, Participants, Resume
 
 
 logger = logging.getLogger(__name__)
@@ -25,12 +25,13 @@ def index(request):
 
 @login_required({'ret_code': 1001})
 @r_json
-def avatar(request):
+def info(request):
     logger.debug(request.user)
     account = Account.objects.get(user=request.user)
     return {
         'ret_code': 0,
-        'avatar': account.avatar
+        'avatar': account.avatar,
+        'username': account.user.username
     }
 
 
@@ -40,6 +41,11 @@ def auth(request):
         'response_type': 'code',
         'redirect_uri': settings.BD_REDIRECT_URI
     }))
+
+
+def logout(request):
+    _logout(request)
+    return redirect('/app')
 
 
 def callback(request):
@@ -72,7 +78,7 @@ def news(request):
         dict = model_to_dict(item)
         dict['date'] = item.date.strftime('%Y-%m-%d')
         dict['desc'] = truncate(item.content, 20)
-        dict['tags'] = [u'公告']
+        dict['tags'] = item.tags 
         return dict
 
     return {
@@ -84,25 +90,65 @@ def news(request):
 @csrf_exempt
 @r_json
 def feedback(request):
-    # TODO implement it!
+    message = request.POST.get('message', None)
+    if not message: 
+        return {
+            'ret_code': 1001
+        }
+
+    account = Account.objects.getAccount(request.user) if request.user else None
+    Feedback(account=account, message=message).save()
+
     return {
         'ret_code': 0
     }
 
 
 @csrf_exempt
+@login_required({'ret_code': 1001})
 @r_json
 def signup(request):
-    # TODO implement it!
+    name = request.POST.get('name', None)
+    message = request.POST.get('message', None)
+    if not name or not message:
+        return {
+            'ret_code': 2001
+        }
+
+    account = Account.objects.getAccount(request.user) if request.user else None
+    if not account:
+        return {
+            'ret_code': 1001
+        }
+
+    Resume(account=account, name=name, message=message).save()
+
     return {
         'ret_code': 0
     }
 
 
 @csrf_exempt
+@login_required({'ret_code': 1001})
 @r_json
 def signupActivity(request):
-    # TODO implement it!
+    newsId = request.POST.get('id', None)
+    name = request.POST.get('name', None)
+    message = request.POST.get('message', None)
+    if not name or not message or not newsId:
+        return {
+            'ret_code': 2001
+        }
+
+    account = Account.objects.getAccount(request.user) if request.user else None
+    if not account:
+        return {
+            'ret_code': 1001
+        }
+
+    news = News.objects.get(pk=newsId)
+    Participants(account=account, news=news, name=name, message=message).save()
+
     return {
         'ret_code': 0
     }

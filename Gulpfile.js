@@ -37,7 +37,7 @@ gulp.task('scripts', function() {
             'assets/components/velocity/velocity.min.js',
             'assets/components/multiline/browser.js',
             'assets/components/jquery.wheelmenu/jquery.wheelmenu.js',
-            'assets/components/appjs/dist/app.min.js',
+            'assets/components/appjs/dist/app.js',
             'assets/js/app.js'
         ]).pipe(concat('app.bundle.js'))
         .pipe(gulpif(!develop, uglify({

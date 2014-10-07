@@ -1,3 +1,4 @@
+@import "assets/components/fontawesome/scss/font-awesome.scss";
 @import "assets/components/jquery.wheelmenu/wheelmenu.css";
 @import "assets/components/appjs/dist/app.min.css";
 @import "assets/components/sweetalert/lib/sweet-alert.css";
@@ -13,7 +14,7 @@ body {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    z-index: 2000;
+    z-index: 1010;
     width: 40px;
     height: 40px;
 }
@@ -63,10 +64,6 @@ body {
 .navigator .wheel .feedback > a {
     background: url(../images/feedback.png) center center no-repeat #fff;
     background-size: 24px;
-}
-
-.app-page.home {
-    z-index: 1000;
 }
 
 .app-page.home > .app-content {
@@ -195,13 +192,8 @@ body {
     color: gray;
 } 
 
-.app-page.detail {
-    z-index: 1010;
-    background: #f7f7f7;
-}
-
 .app-page.detail .article {
-    padding: 20px;
+    padding: 0px 20px;
 }
 
 
@@ -263,7 +255,7 @@ body {
 }
 
 .app-page.feedback form {
-    padding: 20px;
+    padding: 0px 20px;
 
     textarea {
         height: 180px;
@@ -273,7 +265,7 @@ body {
 
 
 .app-page.resume form {
-    padding: 20px;
+    padding: 0px 20px;
 
     input[name=name] {
         margin-bottom: 10px;
@@ -285,9 +277,7 @@ body {
     }
 }
 
-.app-page {
-    z-index: 1000;
-}
+
 
 @mixin icon($size, $path) {
     width: $size;
@@ -298,9 +288,20 @@ body {
     vertical-align: bottom;
 }
 
+.app-topbar.transparent {
+    background: transparent;
+}
+
+
+
 .app-page.login {
+
+    .app-content {
+        box-shadow: none;
+    }
+
     .wrapper {
-        padding: 20px;
+        padding: 0px 20px;
     }
 
     p.head {
@@ -308,8 +309,24 @@ body {
         margin-bottom: 40px;
     }
 
+    p.logout {
+        button {
+            $button-bg: #fe5830;
+            background: $button-bg;
+
+            &:active {
+                background: darken($button-bg, 10%);
+            }
+        }
+    }
+
     .header {
         @include icon(75px, '../images/head.png');
+    }
+
+    img.avatar {
+        max-width: 75px;
+        max-height: 75px;
     }
 
     i.icon-baidu {
@@ -339,4 +356,27 @@ body {
             font-size: 14px;
         }
     }
+}
+
+.app-page.transparent {
+    .app-content {
+        box-shadow: none;
+    }
+
+    .app-topbar {
+        background: transparent;
+    }
+}
+
+.app-page .app-topbar {
+    color: #333;
+}
+
+.app-page {
+    z-index: 1000;
+}
+
+.app-page.login, .app-page.resume,
+.app-page.aboutme, .app-page.feedback, .app-page.detail {
+    z-index: 1050;
 }

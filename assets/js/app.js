@@ -1,24 +1,23 @@
-Blend.lightInit({
-    ak: 'NI3lwuv8vVGBGGC0mzmAmIL3', //从百度开放云平台获取
-    module: ["app", "account"] //根据勾选的模块生成
-});
-
 function getNews() {
     return $.get("/app/api/news", {}, "json");
 }
 
-function signup(name, desc) {
+function signup(name, message) {
     return $.post("/app/api/signup", {
         name: name,
-        desc: desc
+        message: message
     }, "json");
 }
 
-function signupActivity(newsId, name, desc) {
+function info() {
+    return $.get('/app/api/info', {}, 'json');
+}
+
+function signupActivity(newsId, name, message) {
     return $.post("/app/api/signupActivity", {
         id: newsId,
         name: name,
-        desc: desc
+        message: message
     }, "json");
 }
 
@@ -75,7 +74,6 @@ function HomeController(page) {
 }
 
 HomeController.prototype.onReady = function() {
-    $('.wheel-button').removeClass("weak");
 
     getNews().then(function(data) {
         if (data.ret_code !== 0) {
@@ -95,7 +93,6 @@ HomeController.prototype.onReady = function() {
 App.controller('news', HomeController);
 
 function NewsDetailController(page, detail) {
-    $('.wheel-button').addClass("weak");
 
     this.detail = detail;
     this.page = page;
@@ -111,6 +108,9 @@ function NewsDetailController(page, detail) {
         this.$button.addClass('loading');
         signupActivity(this.detail.id, this.form.name.value, this.form.desc.value).then(function(data) {
             if (data.ret_code !== 0) {
+                if (data.ret_code === 1001) {
+                    return App.load('login');
+                }
                 return swal({
                     title: '网络异常',
                     type: 'error',
@@ -162,7 +162,10 @@ NewsDetailController.onReady = function() {
     if (this.detail.headline) {
         this.$detail.addClass("headline");
     }
+
+    this.$page.find('.app-title').html(this.detail.title);
 };
+
 
 App.controller('news-detail', NewsDetailController);
 
@@ -204,6 +207,10 @@ App.controller('resume', function(page) {
         e.preventDefault();
         signup(form.name.value, form.desc.value).then(function(data) {
             if (data.ret_code !== 0) {
+                if (data.ret_code === 1001) {
+                    return App.load('login');
+                }
+
                 return swal({
                     title: '网络异常',
                     type: 'error',
@@ -227,76 +234,45 @@ App.controller('resume', function(page) {
 });
 
 App.controller('login', function(page) {
-    var loginBaiduButton = $(page).find('.baidu button');
+    var $page = $(page);
+    var $head = $page.find('.head');
+    var $logout = $page.find('.logout');
+
+    info().then(function(data) {
+        if (data.ret_code === 1001) {
+            return $page.find('.baidu').show();
+        }
+
+        $page.find('.header').remove();
+        $('<img class="avatar" src="' + data.avatar + '">').appendTo($head);
+        $('<br><span>' + data.username + '</span>').appendTo($head);
+
+        $logout.show();
+    });
+
+    var loginBaiduButton = $page.find('.baidu button');
     loginBaiduButton.click(function() {
         window.location = '/app/auth';
-        /*
-        Blend.mbaas.account.login({
-            redirect_uri: 'http://community.jarvys.me/app/callback',
-            disable_third_login: 0,
-            onsuccess: function() {
-                console.re.log('login success!');
-            },
-            onfail: function(e) {
-                console.re.error(e);
-            }
-        });
-        */
+    });
+
+    var logoutButton = $logout.find('button');
+    logoutButton.click(function() {
+        window.location = '/app/logout'
     });
 });
 
-var AppRouter = Backbone.Router.extend({
-    routes: {
-        'aboutme': 'aboutme',
-        'resume': 'resume',
-        'feedback': 'feedback',
-        'news': 'news',
-        'login': 'login'
-    },
-
-    login: function() {
-        App.load('news', function() {
-            App.load('login', function() {
-                Backbone.history.navigate("login");
-            });
-        });
-    },
-
-    aboutme: function() {
-        App.load('news', function() {
-            App.load('aboutme');
-        });
-    },
-
-    resume: function() {
-        App.load('news', function() {
-            App.load('resume');
-        });
-    },
-
-    news: function() {
-        App.load('news');
-    },
-
-    feedback: function() {
-        App.load('news', function() {
-            App.load('feedback');
-        });
-    }
-});
-
 $(function() {
-    var router = new AppRouter();
-    if (!Backbone.history.start({
-        hashChange: true
-    })) {
-        Backbone.history.navigate('news', {
-            replace: true,
-            trigger: true
+    try {
+        App.restore({
+            maxAge: 5 * 60 * 1000
         });
+    } catch (err) {
+        App.load('news');
     }
 
-    $(".wheel-button").wheelmenu({
+    var $wheelButton = $(".wheel-button");
+    var $menuItems = $('ul.wheel');
+    $wheelButton.wheelmenu({
         trigger: "click",
         animation: "fly",
         animationSpeed: "fast",
@@ -305,21 +281,48 @@ $(function() {
 
     $('.wheel .aboutme a').on('tap', function(e) {
         e.preventDefault();
+        $wheelButton.wheelmenu('hide', {
+            trigger: "click",
+            animation: 'fly',
+            animationSpeed: 'fast',
+            angle: "NE"
+        });
         App.load('aboutme');
     });
 
     $('.wheel .feedback a').on('tap', function(e) {
         e.preventDefault();
+        $wheelButton.wheelmenu('hide', {
+            trigger: "click",
+            animation: 'fly',
+            animationSpeed: 'fast',
+            angle: "NE"
+        });
+
         App.load('feedback');
     });
 
     $('.wheel .resume a').on('tap', function(e) {
         e.preventDefault();
+        $wheelButton.wheelmenu('hide', {
+            trigger: "click",
+            animation: 'fly',
+            animationSpeed: 'fast',
+            angle: "NE"
+        });
+
         App.load('resume');
     });
 
     $('.wheel .personality a').on('tap', function(e) {
         e.preventDefault();
+        $wheelButton.wheelmenu('hide', {
+            trigger: "click",
+            animation: 'fly',
+            animationSeed: 'fast',
+            angle: "NE"
+        });
+
         App.load('login');
     });
 });
