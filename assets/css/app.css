@@ -176,8 +176,21 @@ body {
     .app-page.aboutme p.logo img {
       width: 120px; }
 
+.bd-btn-block {
+  background: #1c78c5;
+  border-radius: 4px;
+  border: none;
+  color: #f1f1f1;
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  outline: none; }
+  .bd-btn-block:active {
+    background: #165e98; }
+
 .submit-block {
-  background: #65b04b;
+  background: #1c78c5;
   border-radius: 4px;
   border: none;
   color: #f1f1f1;
@@ -187,7 +200,7 @@ body {
   font-size: 18px;
   outline: none; }
   .submit-block:active {
-    background: #518c3c; }
+    background: #165e98; }
 
 .app-input {
   border: 1px solid #ccc;
@@ -212,3 +225,48 @@ body {
 
 .app-page {
   z-index: 1000; }
+
+.app-page.login .wrapper {
+  padding: 20px; }
+.app-page.login p.head {
+  text-align: center;
+  margin-bottom: 40px; }
+.app-page.login .header {
+  width: 75px;
+  height: 75px;
+  display: inline-block;
+  background: url(data:image/png;base64,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) center center no-repeat transparent;
+  background-size: 100% 100%;
+  vertical-align: bottom; }
+.app-page.login i.icon-baidu {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAqCAMAAAD26OlUAAAAhFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8g2+bRAAAAK3RSTlMAEJDA+vD24DAI0bGa7E/XIcmFOwPm3Yt/eV44HGkXFAz8uFdGpj/yk3IpgzoXHQAAAgNJREFUOMuFlOmagiAUhg/ivi9lmpNaWlPD/d/fsMmx9Jl5/yT0CocPBNb41HZiAv9SuYyTafNB7SLd9QKPSWLZusjndk88M4Xd80aqG3tjRkxzBiCJfq53xGwRTwAtW+i24pExU2RhxPPfIx6NOG3FOw6yEr8A+Urn4GPV4eJR1A5P3nYuAEGNOVqLWKFYqp4GoJM7E44AkLuqt0Qvt5niAeDf3OSpdnAWVbqtEKouAE6D1bwxpq9zz98V1SbtYZXYNYAtQ2Lq/t4NAhdg9pwZ8q2HMd1W0Y4q1LJIjlGqo7OZxsX9yEDw0rnQXrQIM0C3PDWAQXPq4UOEWA8oZp4YQnkkuAKH13Hihdj3QdSnwsBDBPVbyqSqiPxoCvbGtCrlAkhwE6vzPJOs/YBBD1kE6BGqp7CwsA6GU+bYdTmil2fMiGhW8MnjyFBE3PnDe13FIaGUWlJErutVqCzdiyxYiIR0Yl5Ccv5jHdBrxBI7gEUE8IWod4YSczmJeRt1SKOtyG6LKHMZ1DZsRbyAevH8DfDDdkUccpY5qD/3xUSJqf4QDhmKPygKVB7+cmXmkefFXBT9TRTdjWjr8+7IuSuMR4dsxBDjFq81/SLa7WhEvC/w/mBZKEjkaVOoIXK8vf+kBMPsYbdHo6hI3j8JJEhLK45P7eQH+s6c4iK5Mid8+iD5BcT5hEeEcLNYAAAAAElFTkSuQmCC) center center no-repeat transparent;
+  background-size: 100% 100%;
+  vertical-align: bottom; }
+.app-page.login i.icon-weibo {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAjVBMVEX1Q0L1Q0L1Q0IAAAD1Q0L1Q0L1Q0L////+8fH/9fX+5+f7sbH8zMz4dXX+7Oz94OD6oqH2XFv2TUz//Pz91dX4fX33bGz3aGf/+fn5iIf3Y2L3YF/2UE/1SEf93Nv8xcT8vr76qKf5jYz3b2/2V1b1RUT8wcD7vLz5lZX6mpr92dj90ND7uLj6mJf4gYGdCPrMAAAABnRSTlPxrScAKCUTY3tgAAABdElEQVQ4y7XU13KCQBgFYNRkzxZ6LypNEEt8/8fL/poLISqZyXhuWHY+trDFWH0uDPYixuJzZSwNNhNNFmw2C8OYR2Tm827k76Ud1sVrtOMIAN48QZvbI0+8yASaRyg6b82WURLLZy5E8QslJnRCaiwG7Ij1UFPUCFAkIX9QqfASOBPk4hbTt+p+b7EGh87mNzQ1kFtQ2hg1k2KEGkxyKLatF9j3KPkZj1lVpqRSYOm/kfPqDnU0L6GsNb2srQqAu9NFb32HIpp6TLXJtTpLAfsyWbseOPnahiKVX1QxUI/tGEnwQn8fgELKdwBUY8Sxv64qT2sHjq9rSgDmGNlwGbtAeVnJYethdUcAaoxCailCwTxqoGPMCoA0GaMMImdrWWYnILV0zzQkd7ozFZyC5bQgR21iKqjNFHUuxGHnt1G8YbESAB8e7fG4DESo3LqnnrjKnxyEfCgdm3MZnjPvzefu/5eB8ber52O2KU1Wy7nrcLn6BnhBLZauIywMAAAAAElFTkSuQmCC) center center no-repeat transparent;
+  background-size: 100% 100%;
+  vertical-align: bottom; }
+.app-page.login i.icon-qq {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAXVBMVEUaqO4aqO4aqO4AAAAaqO4aqO4aqO7////8/v+q3/kwsfDn9v3g8/3X8PzR7vxVv/L2/P7I6/uP1fdAt/Enre8dqe7v+f7B6Pt/z/Y0svC95vqY2PhzyvVfw/NPvfJHARRWAAAABnRSTlPxrScAKCUTY3tgAAAA3UlEQVQ4y6XU2Q6CMBCF4QLKaQtt2Re3939MNdGQWRQT/1u+DNA0Y4pjZsovmexYmJwR2YNk5W6ZMfuIGz2G1i5a2NqlL2ixeDX7T2jBVuV1dLPA1qyiMYCUNHQFzWnIMVRpKII1SDQ0HF0lSuC1EjmBJolmgaJAZ8huDF2gFCnyDbQSQR3UHEFBRxVBFnoEASdlDixB9dnLYaluCRqVb2/LdSXo6Rw1Ta9cla4CLfYCeYimcUPszG39/oUgX9e759PJ9eVwcW0Ip2Vg6P9lYH5bPYfdUQ9S5HvrMC/uYPkjMnS4wpwAAAAASUVORK5CYII=) center center no-repeat transparent;
+  background-size: 100% 100%;
+  vertical-align: bottom; }
+.app-page.login .baidu {
+  margin-bottom: 10px; }
+.app-page.login .others {
+  text-align: center; }
+  .app-page.login .others button {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    margin: 0px;
+    font-size: 14px; }

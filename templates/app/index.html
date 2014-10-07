@@ -9,7 +9,15 @@
 
     <link rel="stylesheet" href="{{ STATIC_URL }}css/app.css">
 
-    <script type="text/javascript" name="baidu-tc-cerfication" src="http://apps.bdimg.com/cloudaapi/lightapp.js#0abbcde6beb121643d4a60455eb1d5ac"></script><script type="text/javascript">window.bd && bd._qdc && bd._qdc.init({app_id: 'f3bb02d314af8934caede33e'});</script>
+    <script type="text/javascript" name="baidu-tc-cerfication" src="http://apps.bdimg.com/cloudaapi/lightapp.js#0abbcde6beb121643d4a60455eb1d5ac"></script>
+    <script type="text/javascript">
+        window.bd && bd._qdc && bd._qdc.init(
+        {
+            app_id: 'f3bb02d314af8934caede33e'
+        });
+    </script>
+
+    <script src="//console.re/connector.js" data-channel="lightapp-community" id="consolerescript"></script>
 </head>
 
 <body>
@@ -27,10 +35,8 @@
         <div class="app-content">
             <div class="article"></div>
             <form>
-                <input class='app-input' type='text' name='name' 
-                    placeholder='姓名'>
-                <textarea class='app-input' name='desc' 
-                    placeholder='简述'></textarea>
+                <input class='app-input' type='text' name='name' placeholder='姓名'>
+                <textarea class='app-input' name='desc' placeholder='简述'></textarea>
                 <input type='submit' class="submit-block" value='报名'>
             </form>
         </div>
@@ -39,10 +45,12 @@
     <div class="app-page aboutme" data-page="aboutme">
         <div class="app-content">
             <p class='logo'>
-                <img src="{{ STATIC_URL }}images/logo.png"> 
+                <img src="{{ STATIC_URL }}images/logo.png">
             </p>
             <p class="desc">
-                永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂林修竹；又有清流激湍，映带左右，引以为流觞曲水，列坐其次。虽无丝竹管弦之盛，一觞一咏，亦足以畅叙幽情。   是日也，天朗气清，惠风和畅，仰观宇宙之大，俯察品类之盛，所以游目骋怀，足以极视听之娱，信可乐也。   夫人之相与，俯仰一世，或取诸怀抱，晤言一室之内；或因寄所托，放浪形骸之外。虽取舍万殊，静躁不同，当其欣于所遇，暂得于己，快然自足，不知老之将至。及其所之既倦，情随事迁，感慨系之矣。向之所欣，俯仰之间，已为陈迹，犹不能不以之兴怀。况修短随化，终期于尽。古人云：“死生亦大矣。”岂不痛哉！   每览昔人兴感之由，若合一契，未尝不临文嗟悼，不能喻之于怀。固知一死生为虚诞，齐彭殇为妄作。后之视今，亦犹今之视昔。悲夫！故列叙时人，录其所述，虽世殊事异，所以兴怀，其致一也。后之览者，亦将有感于斯文。
+                永和九年，岁在癸丑，暮春之初，会于会稽山阴之兰亭，修禊事也。群贤毕至，少长咸集。此地有崇山峻岭，茂林修竹；又有清流激湍，映带左右，引以为流觞曲水，列坐其次。虽无丝竹管弦之盛，一觞一咏，亦足以畅叙幽情。
+                是日也，天朗气清，惠风和畅，仰观宇宙之大，俯察品类之盛，所以游目骋怀，足以极视听之娱，信可乐也。 夫人之相与，俯仰一世，或取诸怀抱，晤言一室之内；或因寄所托，放浪形骸之外。虽取舍万殊，静躁不同，当其欣于所遇，暂得于己，快然自足，不知老之将至。及其所之既倦，情随事迁，感慨系之矣。向之所欣，俯仰之间，已为陈迹，犹不能不以之兴怀。况修短随化，终期于尽。古人云：“死生亦大矣。”岂不痛哉！
+                每览昔人兴感之由，若合一契，未尝不临文嗟悼，不能喻之于怀。固知一死生为虚诞，齐彭殇为妄作。后之视今，亦犹今之视昔。悲夫！故列叙时人，录其所述，虽世殊事异，所以兴怀，其致一也。后之览者，亦将有感于斯文。
             </p>
         </div>
     </div>
@@ -50,8 +58,7 @@
     <div class="app-page feedback" data-page="feedback">
         <div class="app-content">
             <form>
-                <textarea class='app-input' name='feedback' rows='8' 
-                    placeholder="将您的宝贵意见反馈给我们..."></textarea>
+                <textarea class='app-input' name='feedback' rows='8' placeholder="将您的宝贵意见反馈给我们..."></textarea>
                 <input type='submit' class='submit-block' value='提交反馈'>
             </form>
         </div>
@@ -61,10 +68,35 @@
         <div class="app-content">
             <form>
                 <input class='app-input' name='name' type='text' placeholder="姓名">
-                <textarea class='app-input' name='desc' 
-                    placeholder="一句话证明你合适..."></textarea>
+                <textarea class='app-input' name='desc' placeholder="一句话证明你合适..."></textarea>
                 <input type='submit' class='submit-block' value='报名'>
             </form>
+        </div>
+    </div>
+
+    <div class="app-page login" data-page="login">
+        <div class="app-content">
+            <div class="wrapper">
+                <p class='head'>
+                    <span class="header"></span>
+                </p>
+
+                <p class="baidu">
+                    <button class="bd-btn-block">
+                        <i class="icon-baidu"></i> 使用百度账号登录
+                    </button>
+                </p>
+
+                <div class="others">
+                    <button class="weibo">
+                        <i class="icon-weibo"></i> 微博登录
+                    </button>
+                    &nbsp; &nbsp; &nbsp;
+                    <button class="qq">
+                        <i class="icon-qq"></i> QQ登录
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 

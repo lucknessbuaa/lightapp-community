@@ -226,20 +226,46 @@ App.controller('resume', function(page) {
     });
 });
 
+App.controller('login', function(page) {
+    var loginBaiduButton = $(page).find('.baidu button');
+    loginBaiduButton.click(function() {
+        Blend.mbaas.account.login({
+            redirect_uri: 'http://community.jarvys.me/app/callback',
+            onsuccess: function() {
+                console.re.log('login success!');
+            },
+            onfail: function(e) {
+                console.re.error(e);
+            }
+        });
+    });
+});
+
 var AppRouter = Backbone.Router.extend({
     routes: {
         'aboutme': 'aboutme',
         'resume': 'resume',
         'feedback': 'feedback',
-        'news': 'news'
+        'news': 'news',
+        'login': 'login'
+    },
+
+    login: function() {
+        App.load('news', function() {
+            App.load('login');
+        });
     },
 
     aboutme: function() {
-
+        App.load('news', function() {
+            App.load('aboutme');
+        });
     },
 
     resume: function() {
-
+        App.load('news', function() {
+            App.load('resume');
+        });
     },
 
     news: function() {
@@ -284,5 +310,10 @@ $(function() {
     $('.wheel .resume a').on('tap', function(e) {
         e.preventDefault();
         App.load('resume');
+    });
+
+    $('.wheel .personality a').on('tap', function(e) {
+        e.preventDefault();
+        App.load('login');
     });
 });
