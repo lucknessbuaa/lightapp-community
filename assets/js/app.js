@@ -70,6 +70,7 @@ function HomeController(page) {
             </div>
          </li>
          */
+        console.log
     }));
 }
 
@@ -152,6 +153,7 @@ function NewsDetailController(page, detail) {
                 <%= desc %>
             </div>
          */
+        console.log
     }));
 }
 
