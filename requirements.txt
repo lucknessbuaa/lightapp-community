@@ -1,10 +1,11 @@
-#--index-url http://pypi.douban.com/simple
+--index-url http://pypi.douban.com/simple
 
 Django
 django-parsley
 django-auth-remember
 django-render-json
 django-render-csv
+django-auth-json
 python-memcached
 django-tables3
 

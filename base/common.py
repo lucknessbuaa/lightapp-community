@@ -23,6 +23,15 @@ INSTALLED_APPS = (
 
 SITE_ID = 1
 
+BD_CLIENT_ID = 'NI3lwuv8vVGBGGC0mzmAmIL3'
+BD_CLIENT_SECRET = 'oY1y5mIrvNVMsG4XQGR2lvByINGzLCkg'
+BD_REDIRECT_URI = 'http://community.jarvys.me/app/callback'
+
+AUTHENTICATION_BACKENDS = (
+    'app.backends.BaiduBackend',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

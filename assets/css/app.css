@@ -56,7 +56,7 @@ body {
 
 .app-page.home > .app-content {
   background: url(../images/bg.png) top center no-repeat #3d7030;
-  background-size: auto 100%; }
+  background-size: 100% auto; }
 
 .app-page.home > .app-content .search {
   display: none;

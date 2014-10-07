@@ -2236,8 +2236,11 @@ App.controller('resume', function(page) {
 App.controller('login', function(page) {
     var loginBaiduButton = $(page).find('.baidu button');
     loginBaiduButton.click(function() {
+        window.location = '/app/auth';
+        /*
         Blend.mbaas.account.login({
             redirect_uri: 'http://community.jarvys.me/app/callback',
+            disable_third_login: 0,
             onsuccess: function() {
                 console.re.log('login success!');
             },
@@ -2245,6 +2248,7 @@ App.controller('login', function(page) {
                 console.re.error(e);
             }
         });
+        */
     });
 });
 
@@ -2259,7 +2263,9 @@ var AppRouter = Backbone.Router.extend({
 
     login: function() {
         App.load('news', function() {
-            App.load('login');
+            App.load('login', function() {
+                Backbone.history.navigate("login");
+            });
         });
     },
 
