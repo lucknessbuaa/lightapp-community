@@ -1614,6 +1614,14 @@ body {
   box-sizing: border-box;
   width: 40px;
   height: 40px; }
+  .navigator .menu-item.wheel-button {
+    box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.2); }
+
+.navigator .wheel .item {
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  overflow: hidden; }
 
 .navigator .wheel-button {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqBAMAAAA37dRoAAAAJFBMVEUAAAD///////////////////////////////////////////+0CY3pAAAAC3RSTlMAbvcRBtDHG8t20aQ4hQkAAAB1SURBVCjPY2BwTNq9e7eaCAMQINjs0btBYGsBAzLbdTcEhABFEWzpTcJAvqH2RiCJYGdvBJs4exuQQLC1N4NZ1puABIK9ewOYxb0bSMDZ9BXF7jLsvsDuY3iILAHy4WwcIcng2ARkaIBCHcEeHGA0PQyW9AAAN3nXGSiKFTYAAAAASUVORK5CYII=) center center no-repeat #65b04b;
@@ -1675,9 +1683,7 @@ body {
   background-image: none; }
 
 .app-page.home > .app-content > .news {
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-right: 10px; }
+  padding: 20px 10px 0px; }
 
 .app-page.home > .app-content > .news > li {
   list-style: none;

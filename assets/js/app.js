@@ -27,25 +27,13 @@ function feedback(message) {
     }, "json");
 }
 
+var $wheelButton;
+
 function HomeController(page) {
     this.page = page;
     this.$page = $(page);
     this.$news = this.$page.find('.news');
 
-    var self = this;
-    this.$news.on('click', 'li', function() {
-        var $this = $(this);
-        var id = $this.data('id');
-        var detail;
-        for (var i = 0; i < self.news.length; i++) {
-            var item = self.news[i];
-            if (item.id == id) {
-                detail = item;
-                break;
-            }
-        }
-        App.load('news-detail', detail || {});
-    });
 
     this.news = [];
     this.tpl = _.template(multiline(function() {
@@ -89,6 +77,33 @@ HomeController.prototype.onReady = function() {
             }
         }.bind(this));
     }.bind(this));
+
+
+    var self = this;
+    this.$news.on('click', 'li', function() {
+        var $this = $(this);
+        var id = $this.data('id');
+        var detail;
+        for (var i = 0; i < self.news.length; i++) {
+            var item = self.news[i];
+            if (item.id == id) {
+                detail = item;
+                break;
+            }
+        }
+
+        if (!detail) {
+            return;
+        }
+
+        $wheelButton.wheelmenu('hide', {
+            trigger: "click",
+            animation: 'fly',
+            animationSpeed: 'fast',
+            angle: "NE"
+        });
+        App.load('news-detail', detail);
+    });
 }
 
 App.controller('news', HomeController);
@@ -272,7 +287,7 @@ $(function() {
         App.load('news');
     }
 
-    var $wheelButton = $(".wheel-button");
+    $wheelButton = $(".wheel-button");
     var $menuItems = $('ul.wheel');
     $wheelButton.wheelmenu({
         trigger: "click",
