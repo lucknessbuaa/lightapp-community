@@ -1,3 +1,4 @@
+@import "assets/components/normalize.css/normalize.css";
 @import "assets/components/fontawesome/scss/font-awesome.scss";
 @import "assets/components/jquery.wheelmenu/wheelmenu.css";
 @import "assets/components/appjs/dist/app.min.css";
@@ -6,6 +7,7 @@
 $button-bg: #65b04b;
 
 body {
+    -webkit-appearance: none;
     color: #333;
     line-height: 1.42;
 }
@@ -388,4 +390,8 @@ body {
 .app-page.login, .app-page.resume,
 .app-page.aboutme, .app-page.feedback, .app-page.detail {
     z-index: 1050;
+}
+
+.app-android .app-topbar .app-title {
+    padding-left: 30px;
 }
