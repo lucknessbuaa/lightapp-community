@@ -26,6 +26,17 @@ body {
     box-sizing: border-box;
     width: 40px;
     height: 40px;
+
+    &.wheel-button {
+        box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .2);
+    }
+}
+
+.navigator .wheel .item {
+    box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .2);
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    overflow: hidden;
 }
 
 .navigator .wheel-button {
@@ -101,9 +112,7 @@ body {
 }
 
 .app-page.home > .app-content > .news {
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding: 20px 10px 0px;
 }
 
 .app-page.home > .app-content > .news > li {

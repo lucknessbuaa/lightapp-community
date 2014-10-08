@@ -19,7 +19,7 @@
     "jquery": "~2.1.1",
     "zepto": "~1.1.4",
     "velocity": "~1.1.0",
-    "jquery.wheelmenu": "git@github.com:jarvys/wheel-menu.git",
+    "jquery.wheelmenu": "https://github.com/jarvys/wheel-menu.git",
     "underscore": "~1.7.0",
     "multiline": "~1.0.1",
     "appjs": "~2.0.13",
