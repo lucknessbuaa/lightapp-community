@@ -60,44 +60,9 @@ def info(request):
     }
 
 
-'''
-def auth(request):
-    return redirect('https://openapi.baidu.com/oauth/2.0/authorize?' + urlencode({
-        'client_id': settings.BD_CLIENT_ID,
-        'response_type': 'code',
-        'redirect_uri': settings.BD_REDIRECT_URI
-    }))
-'''
-
-
 def logout(request):
     _logout(request)
     return redirect('/app')
-
-
-'''
-def callback(request):
-    code = request.GET.get('code')
-    logger.debug('code!!!: %s' % code)
-
-    r = requests.get('https://openapi.baidu.com/oauth/2.0/token', params={
-        'grant_type': 'authorization_code',
-        'code': code,
-        'client_id': settings.BD_CLIENT_ID,
-        'client_secret': settings.BD_CLIENT_SECRET,
-        'redirect_uri': settings.BD_REDIRECT_URI
-    })
-    logger.debug(r.json())
-    access_token = r.json()['access_token']
-
-    user = authenticate(token=access_token)
-    if user is not None:
-        login(request, user)
-    else:
-        logger.warn("fail to login!!!!!!!!!!!!!")
-
-    return redirect('/app#login')
-'''
 
 
 @r_json
@@ -124,8 +89,7 @@ def feedback(request):
             'ret_code': 1001
         }
 
-    account = Account.objects.getAccount(request.user) if request.user else None
-    Feedback(account=account, message=message).save()
+    Feedback(user=request.user, message=message).save()
 
     return {
         'ret_code': 0
@@ -143,13 +107,7 @@ def signup(request):
             'ret_code': 2001
         }
 
-    account = Account.objects.getAccount(request.user) if request.user else None
-    if not account:
-        return {
-            'ret_code': 1001
-        }
-
-    Resume(account=account, name=name, message=message).save()
+    Resume(user=request.user, name=name, message=message).save()
 
     return {
         'ret_code': 0
@@ -168,14 +126,8 @@ def signupActivity(request):
             'ret_code': 2001
         }
 
-    account = Account.objects.getAccount(request.user) if request.user else None
-    if not account:
-        return {
-            'ret_code': 1001
-        }
-
     news = News.objects.get(pk=newsId)
-    Participants(account=account, news=news, name=name, message=message).save()
+    Participants(user=request.user, news=news, name=name, message=message).save()
 
     return {
         'ret_code': 0

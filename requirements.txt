@@ -7,7 +7,6 @@ django-render-json
 django-render-csv
 django-auth-json
 python-memcached
-python-social-auth
 django-social-auth
 django-tables3
 
