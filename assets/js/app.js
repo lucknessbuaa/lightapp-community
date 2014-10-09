@@ -257,7 +257,9 @@ App.controller('login', function(page) {
 
     info().then(function(data) {
         if (data.ret_code === 1001) {
-            return $page.find('.baidu').show();
+            $page.find('.baidu').show();
+            $page.find('.others').show();
+            return;
         }
 
         $page.find('.header').remove();

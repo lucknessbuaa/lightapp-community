@@ -14,23 +14,49 @@ import truncate
 import requests
 from django_auth_json import login_required
 from backend.models import News, Feedback, Participants, Resume
+from social_auth.db.django_models import UserSocialAuth
 
 
 logger = logging.getLogger(__name__)
 
 
+def avatar(user):
+    try:
+        social = UserSocialAuth.objects.get(user=user)
+        if social.provider == 'baidu':
+            return 'http://tb.himg.baidu.com/sys/portrait/item/{portrait}' % social.extra_data
+        elif social.provider == 'weibo':
+            logger.debug(social)
+            return social.extra_data['profile_image_url']
+        else:
+            return None
+    except: 
+        logger.exception('user not found from social auth')
+        return None
+
+def fullname(user):
+    if user.first_name or user.last_name:
+        if user.first_name and user.last_name:
+            return user.first_name + ' ' + user.last_name
+        else:
+            return user.first_name if user.first_name else user.last_name
+    else:
+        return user.username
+
+
 def index(request):
-    logger.debug('wtf')
     return render(request, 'app/index.html')
 
 
 @login_required({'ret_code': 1001})
 @r_json
 def info(request):
+    logger.debug('userid %d' % request.user.pk)
+
     return {
         'ret_code': 0,
-        #'avatar': account.avatar,
-        'username': request.user.username
+        'avatar': avatar(request.user),
+        'username': fullname(request.user)
     }
 
 

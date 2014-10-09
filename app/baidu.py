@@ -1,15 +1,12 @@
+import logging
+import json 
 from urllib import urlencode
 
-try:
-    import json as simplejson
-except ImportError:
-    try:
-        import simplejson
-    except ImportError:
-        from django.utils import simplejson
-
 from social_auth.backends import BaseOAuth2, OAuthBackend
-from social_auth.utils import dsa_urlopen
+import requests
+
+
+logger = logging.getLogger(__name__)
 
 
 class BaiduBackend(OAuthBackend):
@@ -22,7 +19,10 @@ class BaiduBackend(OAuthBackend):
         return response['userid']
 
     def get_user_details(self, response):
-        return {'username': response.get('username', '')}
+        return {
+            'username': response.get('username', ''),
+            'firs_name': response.get('realname', '')
+        }
 
 
 class BaiduAuth(BaseOAuth2):
@@ -34,12 +34,15 @@ class BaiduAuth(BaseOAuth2):
     REDIRECT_STATE = False
 
     def user_data(self, access_token, *args, **kwargs):
-        data = {'access_token': access_token}
-        url = 'https://openapi.baidu.com/rest/2.0/passport/users/getInfo' + urlencode(data)
-
+        url = 'https://openapi.baidu.com/rest/2.0/passport/users/getInfo'
         try:
-            return json.loads(dsa_urlopen(url).read())
+            data = requests.get(url, params={
+                'access_token': access_token
+            }).json()
+            logger.debug(data)
+            return data
         except (ValueError, KeyError, IOError):
+            logger.exception()
             return None
 
 
