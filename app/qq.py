@@ -28,7 +28,7 @@ class QQBackend(OAuthBackend):
 
 class QQAuth(BaseOAuth2):
     AUTHORIZATION_URL = 'https://graph.qq.com/oauth2.0/authorize'
-    ACCESS_TOKEN_URL = 'https://graph.qq.com/oauth2.0/token '
+    ACCESS_TOKEN_URL = 'https://graph.qq.com/oauth2.0/token'
     AUTH_BACKEND = QQBackend
     SETTINGS_KEY_NAME = 'QQ_CLIENT_KEY'
     SETTINGS_SECRET_NAME = 'QQ_CLIENT_SECRET'
