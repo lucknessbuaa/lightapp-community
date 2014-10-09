@@ -13,10 +13,11 @@ from django_render_json import render_json
 import truncate
 import requests
 from django_auth_json import login_required
-from backend.models import News, Feedback, Account, Participants, Resume
+from backend.models import News, Feedback, Participants, Resume
 
 
 logger = logging.getLogger(__name__)
+
 
 def index(request):
     logger.debug('wtf')
@@ -26,21 +27,21 @@ def index(request):
 @login_required({'ret_code': 1001})
 @r_json
 def info(request):
-    logger.debug(request.user)
-    account = Account.objects.get(user=request.user)
     return {
         'ret_code': 0,
-        'avatar': account.avatar,
-        'username': account.user.username
+        #'avatar': account.avatar,
+        'username': request.user.username
     }
 
 
+'''
 def auth(request):
     return redirect('https://openapi.baidu.com/oauth/2.0/authorize?' + urlencode({
         'client_id': settings.BD_CLIENT_ID,
         'response_type': 'code',
         'redirect_uri': settings.BD_REDIRECT_URI
     }))
+'''
 
 
 def logout(request):
@@ -48,6 +49,7 @@ def logout(request):
     return redirect('/app')
 
 
+'''
 def callback(request):
     code = request.GET.get('code')
     logger.debug('code!!!: %s' % code)
@@ -69,11 +71,11 @@ def callback(request):
         logger.warn("fail to login!!!!!!!!!!!!!")
 
     return redirect('/app#login')
+'''
 
 
 @r_json
 def news(request):
-
     def map_news(item):
         dict = model_to_dict(item)
         dict['date'] = item.date.strftime('%Y-%m-%d')

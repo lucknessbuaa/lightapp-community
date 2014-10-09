@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+'''
 class AccountManager(models.Manager):
 
     @transaction.atomic
@@ -40,6 +41,7 @@ class Account(models.Model):
             return 'http://tb.himg.baidu.com/sys/portraitn/item/%s' % self.baidu_portrait
         else:
             return 'http://tb.himg.baidu.com/sys/portrait/item/%s' % self.baidu_portrait
+'''
 
 
 ACTIVITY_CHOICES = (
@@ -67,7 +69,7 @@ class News(models.Model):
 
 
 class Participants(models.Model):
-    account = models.ForeignKey(Account)
+    user = models.ForeignKey(User)
     message = models.CharField(verbose_name=u'信息', max_length=255, null=True)
     name = models.CharField(verbose_name=u'姓名', max_length=255, null=True)
     news = models.ForeignKey(News)
@@ -75,11 +77,11 @@ class Participants(models.Model):
 
 class Feedback(models.Model):
     message = models.CharField(verbose_name=u'信息', max_length=255)
-    account = models.ForeignKey(Account, null=True)
+    user = models.ForeignKey(User, null=True)
 
 
 class Resume(models.Model):
     message = models.CharField(verbose_name=u'信息', max_length=255, null=True)
     name = models.CharField(verbose_name=u'姓名', max_length=255, null=True)
-    account = models.ForeignKey(Account, null=True)
+    user = models.ForeignKey(User, null=True)
 

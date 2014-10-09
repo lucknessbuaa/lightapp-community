@@ -268,8 +268,14 @@ App.controller('login', function(page) {
     });
 
     var loginBaiduButton = $page.find('.baidu button');
+    var loginWeiboButton = $page.find('button.weibo');
+
     loginBaiduButton.click(function() {
-        window.location = '/app/auth';
+        window.location = '/oauth/login/baidu';
+    });
+
+    loginWeiboButton.click(function() {
+        window.location = '/oauth/login/weibo';
     });
 
     var logoutButton = $logout.find('button');
