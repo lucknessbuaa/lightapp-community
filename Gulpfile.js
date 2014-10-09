@@ -30,7 +30,7 @@ gulp.task("watch-sass", function() {
 gulp.task('scripts', function() {
     return gulp.src([
             'assets/components/jquery/dist/jquery.min.js',
-            'assets/components/jquery.tap/jquery.tap.min.js',
+            'assets/components/jquery.tap/jquery.tap.js',
             'assets/components/sweetalert/lib/sweet-alert.min.js',
             'assets/components/underscore/underscore-min.js',
             'assets/components/backbone/backbone.js',

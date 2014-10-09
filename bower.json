@@ -23,7 +23,7 @@
     "underscore": "~1.7.0",
     "multiline": "~1.0.1",
     "appjs": "~2.0.13",
-    "jquery.tap": "~1.1.4",
+    "jquery.tap": "https://github.com/jarvys/jquery.tap.git",
     "sweetalert": "~0.1.0",
     "backbone": "~1.1.2",
     "fontawesome": "~4.2.0",
