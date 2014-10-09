@@ -271,10 +271,15 @@ App.controller('login', function(page) {
 
     var loginBaiduButton = $page.find('.baidu button');
     var loginWeiboButton = $page.find('button.weibo');
+    var loginQQButton = $page.find('button.qq');
 
     loginBaiduButton.click(function() {
         window.location = '/oauth/login/baidu';
     });
+
+    loginQQButton.click(function() {
+        window.location = '/oauth/login/qq';
+    })
 
     loginWeiboButton.click(function() {
         window.location = '/oauth/login/weibo';
