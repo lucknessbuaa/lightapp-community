@@ -346,10 +346,12 @@ body {
 
     i.icon-weibo {
         @include icon(16px, '../images/weibo.png');
+        vertical-align: text-top;
     }
 
     i.icon-qq {
         @include icon(16px, '../images/qq.png');
+        vertical-align: text-top;
     }
 
     .baidu {
@@ -359,12 +361,22 @@ body {
     .others {
         text-align: center;
         button {
+            width: 48%;
+            box-sizing: border-box;
             padding: 4px 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
             background: #fff;
             margin: 0px;
             font-size: 14px;
+
+            &.weibo {
+                float: left;
+            }
+
+            &.qq {
+                float: right;
+            }
         }
     }
 }
