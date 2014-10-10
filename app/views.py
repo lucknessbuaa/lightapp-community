@@ -26,8 +26,9 @@ def avatar(user):
         if social.provider == 'baidu':
             return 'http://tb.himg.baidu.com/sys/portrait/item/{portrait}' % social.extra_data
         elif social.provider == 'weibo':
-            logger.debug(social)
             return social.extra_data['profile_image_url']
+        elif social.provider == 'qq':
+            return social.extra_data['figureurl_2']
         else:
             return None
     except: 

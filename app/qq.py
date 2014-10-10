@@ -1,7 +1,10 @@
 import uuid
 import logging
 import json 
+import requests
+import re
 from urllib import urlencode
+from urllib2 import Request
 
 
 from social_auth.backends import BaseOAuth2, OAuthBackend
@@ -19,9 +22,10 @@ class QQBackend(OAuthBackend):
     ]
 
     def get_user_id(self, details, response):
-        return 'QQ' + str(uuid.uuid4())
+        return response['openid']
 
     def get_user_details(self, response):
+        logger.debug('response: ' + str(response))
         return {
             'username': response.get('nickname', '') + str(uuid.uuid4()),
             'first_name': response.get('nickname', '')
@@ -36,13 +40,33 @@ class QQAuth(BaseOAuth2):
     SETTINGS_SECRET_NAME = 'QQ_CLIENT_SECRET'
     REDIRECT_STATE = False
 
+    def getOpenid(self, access_token):
+        r = requests.get('https://graph.qq.com/oauth2.0/me', params={
+            'access_token': access_token
+        })
+
+        m = re.search('callback\((.+)\)', r.content)
+        if not m:
+            return None
+
+        data = json.loads(m.group(1))
+        return data['openid']
+
     def user_data(self, access_token, *args, **kwargs):
+        openid = self.getOpenid(access_token)
+
+        if not openid:
+            return None
+
         url = 'https://graph.qq.com/user/get_user_info'
+
         try:
             data = requests.get(url, params={
-                'access_token': access_token
+                'access_token': access_token,
+                'oauth_consumer_key': self.get_key_and_secret()[0],
+                'openid': openid
             }).json()
-            logger.debug(data)
+            data['openid'] = openid
             return data
         except (ValueError, KeyError, IOError):
             logger.exception()
@@ -52,8 +76,6 @@ class QQAuth(BaseOAuth2):
         """Completes loging process, must return user instance"""
         self.process_error(self.data)
         params = self.auth_complete_params(self.validate_state())
-
-        from urllib2 import Request
         request = Request(self.ACCESS_TOKEN_URL, data=urlencode(params),
                           headers=self.auth_headers())
 
@@ -61,6 +83,7 @@ class QQAuth(BaseOAuth2):
             result = dsa_urlopen(request).read()
             import urlparse
             response = urlparse.parse_qs(result)
+            logger.debug(str(response))
         except HTTPError, e:
             if e.code == 400:
                 raise AuthCanceled(self)
