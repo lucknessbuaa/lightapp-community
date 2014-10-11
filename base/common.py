@@ -16,6 +16,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.staticfiles',
+    'social_auth',
     'base',
     'backend',
     "django_tables2"
@@ -23,12 +24,28 @@ INSTALLED_APPS = (
 
 SITE_ID = 1
 
-BD_CLIENT_ID = 'NI3lwuv8vVGBGGC0mzmAmIL3'
-BD_CLIENT_SECRET = 'oY1y5mIrvNVMsG4XQGR2lvByINGzLCkg'
-BD_REDIRECT_URI = 'http://community.limijiaoyin.com/app/callback'
+BAIDU_CLIENT_KEY = 'NI3lwuv8vVGBGGC0mzmAmIL3'
+BAIDU_CLIENT_SECRET = 'oY1y5mIrvNVMsG4XQGR2lvByINGzLCkg'
+
+WEIBO_CLIENT_KEY = '3131404119'
+WEIBO_CLIENT_SECRET = '93d4c32f83e73f7d352e858001ce9198'
+
+QQ_CLIENT_KEY = '101159743'
+QQ_CLIENT_SECRET = 'f7297c665355649d36ec6c518f2659f1'
+
+SOCIAL_AUTH_UID_LENGTH = 128
+SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 128
+SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 128
+SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 128
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/app/'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/app/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = True
 
 AUTHENTICATION_BACKENDS = (
-    'app.backends.BaiduBackend',
+    'social_auth.backends.contrib.weibo.WeiboBackend',
+    'app.qq.QQBackend',
+    'app.baidu.BaiduBackend',
     'django.contrib.auth.backends.ModelBackend'
 )
 

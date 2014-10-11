@@ -94,3 +94,4 @@ assets/components
 nohup.out
 sqlite3.db
 .gulp
+.idea

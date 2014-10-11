@@ -257,7 +257,9 @@ App.controller('login', function(page) {
 
     info().then(function(data) {
         if (data.ret_code === 1001) {
-            return $page.find('.baidu').show();
+            $page.find('.baidu').show();
+            $page.find('.others').show();
+            return;
         }
 
         $page.find('.header').remove();
@@ -268,8 +270,19 @@ App.controller('login', function(page) {
     });
 
     var loginBaiduButton = $page.find('.baidu button');
+    var loginWeiboButton = $page.find('button.weibo');
+    var loginQQButton = $page.find('button.qq');
+
     loginBaiduButton.click(function() {
-        window.location = '/app/auth';
+        window.location = '/oauth/login/baidu';
+    });
+
+    loginQQButton.click(function() {
+        window.location = '/oauth/login/qq';
+    })
+
+    loginWeiboButton.click(function() {
+        window.location = '/oauth/login/weibo';
     });
 
     var logoutButton = $logout.find('button');

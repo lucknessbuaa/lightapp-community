@@ -3,9 +3,7 @@ from django.contrib import admin
 
 urlpatterns = patterns('app.views',
     url(r'^$', 'index'),
-    url(r'^auth$', 'auth'),
     url(r'^logout$', 'logout'),
-    url(r'^callback$', 'callback'),
     url(r'^api/news$', 'news'),
     url(r'^api/info$', 'info'),
     url(r'^api/feedback$', 'feedback'),
