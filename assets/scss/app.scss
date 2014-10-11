@@ -14,11 +14,9 @@ body {
 
 .navigator {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 0px;
+    left: 0px;
     z-index: 1010;
-    width: 40px;
-    height: 40px;
 }
 
 .navigator .menu-item {
@@ -28,22 +26,22 @@ body {
     box-sizing: border-box;
     width: 40px;
     height: 40px;
-
-    &.wheel-button {
-        box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .2);
-    }
 }
 
 .navigator .wheel .item {
-    box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .2);
+    box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .1);
     border-radius: 50%;
-    border: 1px solid #ccc;
+    border: 1px solid #DDD;
     overflow: hidden;
 }
 
 .navigator .wheel-button {
-    background: url(../images/menu.png) center center no-repeat #65b04b;
-    background-size: 20px;
+    padding: 20px;
+    .button-inner {
+        background: url(../images/menu.png) center center no-repeat #65b04b;
+        background-size: 20px;
+        box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .2);
+    }
 }
 
 .navigator .wheel-button.weak {
