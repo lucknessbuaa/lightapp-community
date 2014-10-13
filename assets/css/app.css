@@ -1595,6 +1595,7 @@
   content: "\f20c"; }
 
 body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   -webkit-appearance: none;
   color: #333;
   line-height: 1.42; }
@@ -1608,6 +1609,7 @@ body {
 .navigator .menu-item {
   display: block;
   border: 2px solid #fff;
+  font-size: 16px;
   border-radius: 50%;
   box-sizing: border-box;
   width: 40px;
@@ -1759,11 +1761,12 @@ body {
   color: gray; }
 
 .app-page.detail .article {
-  padding: 0px 20px; }
+  padding: 20px 20px 0px; }
 
 .app-page.aboutme p {
   padding: 6px 12px; }
   .app-page.aboutme p.logo {
+    padding-top: 20px;
     text-align: center; }
     .app-page.aboutme p.logo img {
       width: 120px; }
@@ -1802,21 +1805,18 @@ body {
   padding: 10px 15px; }
 
 .app-page.feedback form {
-  padding: 0px 20px; }
+  padding: 20px 20px; }
   .app-page.feedback form textarea {
     height: 180px;
     margin-bottom: 20px; }
 
 .app-page.resume form {
-  padding: 0px 20px; }
+  padding: 20px 20px; }
   .app-page.resume form input[name=name] {
     margin-bottom: 10px; }
   .app-page.resume form textarea {
     height: 120px;
     margin-bottom: 30px; }
-
-.app-topbar.transparent {
-  background: transparent; }
 
 .app-page.login .app-content {
   box-shadow: none; }
@@ -1824,7 +1824,8 @@ body {
   padding: 0px 20px; }
 .app-page.login p.head {
   text-align: center;
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+  margin-top: 20px; }
 .app-page.login p.logout button {
   background: #fe5830; }
   .app-page.login p.logout button:active {
@@ -1880,11 +1881,6 @@ body {
     .app-page.login .others button.qq {
       float: right; }
 
-.app-page.transparent .app-content {
-  box-shadow: none; }
-.app-page.transparent .app-topbar {
-  background: transparent; }
-
 .app-page .app-topbar {
   color: #333; }
 
@@ -1893,6 +1889,3 @@ body {
 
 .app-page.login, .app-page.resume, .app-page.aboutme, .app-page.feedback, .app-page.detail {
   z-index: 1050; }
-
-.app-android .app-topbar .app-title {
-  padding-left: 30px; }

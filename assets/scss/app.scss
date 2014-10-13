@@ -7,6 +7,7 @@
 $button-bg: #65b04b;
 
 body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
     -webkit-appearance: none;
     color: #333;
     line-height: 1.42;
@@ -22,6 +23,7 @@ body {
 .navigator .menu-item {
     display: block;
     border: 2px solid #fff;
+        font-size: 16px;
     border-radius: 50%;
     box-sizing: border-box;
     width: 40px;
@@ -202,7 +204,7 @@ body {
 } 
 
 .app-page.detail .article {
-    padding: 0px 20px;
+    padding: 20px 20px 0px;
 }
 
 
@@ -211,6 +213,7 @@ body {
         padding: 6px 12px;
 
         &.logo {
+            padding-top: 20px;
             text-align: center;
 
             img {
@@ -264,7 +267,7 @@ body {
 }
 
 .app-page.feedback form {
-    padding: 0px 20px;
+    padding: 20px 20px;
 
     textarea {
         height: 180px;
@@ -274,7 +277,7 @@ body {
 
 
 .app-page.resume form {
-    padding: 0px 20px;
+    padding: 20px 20px;
 
     input[name=name] {
         margin-bottom: 10px;
@@ -297,11 +300,6 @@ body {
     vertical-align: bottom;
 }
 
-.app-topbar.transparent {
-    background: transparent;
-}
-
-
 
 .app-page.login {
 
@@ -316,6 +314,7 @@ body {
     p.head {
         text-align: center;
         margin-bottom: 40px;
+        margin-top: 20px;
     }
 
     p.logout {
@@ -379,16 +378,6 @@ body {
     }
 }
 
-.app-page.transparent {
-    .app-content {
-        box-shadow: none;
-    }
-
-    .app-topbar {
-        background: transparent;
-    }
-}
-
 .app-page .app-topbar {
     color: #333;
 }
@@ -402,6 +391,3 @@ body {
     z-index: 1050;
 }
 
-.app-android .app-topbar .app-title {
-    padding-left: 30px;
-}
