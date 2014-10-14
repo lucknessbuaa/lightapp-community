@@ -7,6 +7,7 @@
 $button-bg: #65b04b;
 
 body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
     -webkit-appearance: none;
     color: #333;
     line-height: 1.42;
@@ -14,36 +15,35 @@ body {
 
 .navigator {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 0px;
+    left: 0px;
     z-index: 1010;
-    width: 40px;
-    height: 40px;
 }
 
 .navigator .menu-item {
     display: block;
     border: 2px solid #fff;
+        font-size: 16px;
     border-radius: 50%;
     box-sizing: border-box;
     width: 40px;
     height: 40px;
-
-    &.wheel-button {
-        box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .2);
-    }
 }
 
 .navigator .wheel .item {
-    box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .2);
+    box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .1);
     border-radius: 50%;
-    border: 1px solid #ccc;
+    border: 1px solid #DDD;
     overflow: hidden;
 }
 
 .navigator .wheel-button {
-    background: url(../images/menu.png) center center no-repeat #65b04b;
-    background-size: 20px;
+    padding: 20px;
+    .button-inner {
+        background: url(../images/menu.png) center center no-repeat #65b04b;
+        background-size: 20px;
+        box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, .2);
+    }
 }
 
 .navigator .wheel-button.weak {
@@ -236,7 +236,7 @@ body {
 } 
 
 .app-page.detail .article {
-    padding: 0px 20px;
+    padding: 20px 20px 0px;
 }
 
 
@@ -245,6 +245,7 @@ body {
         padding: 6px 12px;
 
         &.logo {
+            padding-top: 20px;
             text-align: center;
 
             img {
@@ -298,7 +299,7 @@ body {
 }
 
 .app-page.feedback form {
-    padding: 0px 20px;
+    padding: 20px 20px;
 
     textarea {
         height: 180px;
@@ -308,7 +309,7 @@ body {
 
 
 .app-page.resume form {
-    padding: 0px 20px;
+    padding: 20px 20px;
 
     input[name=name] {
         margin-bottom: 10px;
@@ -331,11 +332,6 @@ body {
     vertical-align: bottom;
 }
 
-.app-topbar.transparent {
-    background: transparent;
-}
-
-
 
 .app-page.login {
 
@@ -350,6 +346,7 @@ body {
     p.head {
         text-align: center;
         margin-bottom: 40px;
+        margin-top: 20px;
     }
 
     p.logout {
@@ -413,16 +410,6 @@ body {
     }
 }
 
-.app-page.transparent {
-    .app-content {
-        box-shadow: none;
-    }
-
-    .app-topbar {
-        background: transparent;
-    }
-}
-
 .app-page .app-topbar {
     color: #333;
 }
@@ -436,6 +423,3 @@ body {
     z-index: 1050;
 }
 
-.app-android .app-topbar .app-title {
-    padding-left: 30px;
-}
