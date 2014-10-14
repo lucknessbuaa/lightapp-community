@@ -127,7 +127,40 @@ body {
     padding: 15px 10px 30px;
 }
 
-.app-page.home > .app-content > .news > li:after {
+.app-page.search > .app-content .search > input[type=text]:hover {
+    outline: none;
+    color: #ccc;
+    background-image: none;
+}
+
+.app-page.search > .app-content .search {
+    background: #297a1b;
+    border: 1px solid #5fa647;
+    border-radius: 8px;
+
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    width: 75%;
+}
+
+.app-page.search > .app-content .search > input[type=text] {
+    padding: 6px 12px;
+    display: block;
+    box-sizing: border-box;
+    border: none;
+    background: url(../images/search-bg.png) center center no-repeat transparent;
+    background-size: auto 70%;
+    font-size: 14px;
+}
+
+.app-page.search > .app-content .search + span {
+    width: 25%;
+}
+
+.app-page.search > .app-content > .news > li:after {
     display: block;
     position: absolute;
     background: url(../images/news-bottom.png) center center no-repeat transparent;
@@ -139,7 +172,7 @@ body {
     content: " ";
 }
 
-.app-page.home > .app-content > .news > li:before {
+.app-page.search > .app-content > .news > li:before {
     display: block;
     position: absolute;
     top: -15px;

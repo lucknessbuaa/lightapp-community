@@ -29,20 +29,20 @@ gulp.task("watch-sass", function() {
 
 gulp.task('scripts', function() {
     return gulp.src([
-            'assets/components/jquery/dist/jquery.min.js',
+            'assets/components/jquery/dist/jquery.js',
             'assets/components/jquery.tap/jquery.tap.js',
-            'assets/components/sweetalert/lib/sweet-alert.min.js',
-            'assets/components/underscore/underscore-min.js',
+            'assets/components/sweetalert/lib/sweet-alert.js',
+            'assets/components/underscore/underscore.js',
             'assets/components/backbone/backbone.js',
-            'assets/components/velocity/velocity.min.js',
+            'assets/components/velocity/velocity.js',
             'assets/components/multiline/browser.js',
             'assets/components/jquery.wheelmenu/jquery.wheelmenu.js',
             'assets/components/appjs/dist/app.js',
             'assets/js/app.js'
         ]).pipe(concat('app.bundle.js'))
-        .pipe(gulpif(!develop, uglify({
-            preserveComments: 'some'
-        })))
+        //.pipe(gulpif(!develop, uglify({
+        //    preserveComments: 'some'
+        //})))
         .pipe(gulp.dest('assets/js/'))
 
 });

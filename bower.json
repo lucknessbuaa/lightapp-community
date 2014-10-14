@@ -27,7 +27,7 @@
     "sweetalert": "~0.1.0",
     "backbone": "~1.1.2",
     "fontawesome": "~4.2.0",
-    "bootstrap-sass-official": "~3.2.0+2",
+    "bootstrap-sass-official": "3.2.0+2",
     "normalize.css": "~3.0.2"
   }
 }

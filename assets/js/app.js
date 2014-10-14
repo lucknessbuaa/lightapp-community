@@ -33,7 +33,7 @@ function HomeController(page) {
     this.page = page;
     this.$page = $(page);
     this.$news = this.$page.find('.news');
-
+    this.$search = this.$page.find('.search > input');
 
     this.news = [];
     this.tpl = _.template(multiline(function() {
@@ -77,7 +77,10 @@ HomeController.prototype.onReady = function() {
             }
         }.bind(this));
     }.bind(this));
-
+    
+    this.$search.focus(function() {
+        App.load('search');
+    });
 
     var self = this;
     this.$news.on('click', 'li', function() {
@@ -107,6 +110,79 @@ HomeController.prototype.onReady = function() {
 }
 
 App.controller('news', HomeController);
+
+function SearchController(page) {
+    this.page = page;
+    this.$page = $(page);
+    this.$news = this.$page.find('.searchResult');
+
+
+    this.news = [];
+    this.tpl = _.template(multiline(function() {
+        /*@preserve
+        <li class='article' data-id='<%= id %>'>
+            <div class="title">
+                <span class="title-inner"><%= title %></span>
+            </div>
+            <div class="detail">
+                <span class="date"><%= date %></span>
+                <% if (tags) { %>
+                    <% _.each(tags, function(tag) { %>
+                        <span class="tag"><%= tag %></span>
+                    <% }); %>
+                <% } %>
+            </div>
+            <div class="cover">
+                <img src='<%- cover %>'>
+            </div>
+            <div class="desc">
+                <%= desc %>
+            </div>
+         </li>
+         */
+        console.log
+    }));
+}
+
+SearchController.prototype.onReady = function() {
+
+    getNews().then(function(data) {
+        if (data.ret_code !== 0) {
+            return;
+        }
+
+        this.news = data.news;
+        this.news.forEach(function(item) {
+            var $item = $(this.tpl(item)).appendTo(this.$news);
+            if (item.headline) {
+                $item.addClass('headline');
+            }
+        }.bind(this));
+    }.bind(this));
+
+
+    var self = this;
+    this.$news.on('click', 'li', function() {
+        var $this = $(this);
+        var id = $this.data('id');
+        var detail;
+        for (var i = 0; i < self.news.length; i++) {
+            var item = self.news[i];
+            if (item.id == id) {
+                detail = item;
+                break;
+            }
+        }
+
+        if (!detail) {
+            return;
+        }
+
+        App.load('news-detail', detail);
+    });
+}
+
+App.controller('search', SearchController);
 
 function NewsDetailController(page, detail) {
 
