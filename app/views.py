@@ -2,6 +2,7 @@
 import logging
 from urllib import urlencode
 
+from django.db.models import Q
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -65,6 +66,23 @@ def logout(request):
     _logout(request)
     return redirect('/app')
 
+@r_json
+def search(request):
+    def map_news(item):
+        dict = model_to_dict(item)
+        dict['date'] = item.date.strftime('%Y-%m-%d')
+        dict['desc'] = truncate(item.content, 20)
+        dict['tags'] = item.tags 
+        return dict
+    news = News.objects.all().order_by('-headline')
+    news = news.filter(Q(type__contains=request.GET['q'])|\
+    Q(content__contains=request.GET['q'])|\
+    Q(title__contains=request.GET['q']))
+
+    return {
+        'ret_code': 0,
+        'news': map(map_news, news)
+    }
 
 @r_json
 def news(request):

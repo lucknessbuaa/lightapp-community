@@ -20630,6 +20630,12 @@ function getNews() {
     return $.get("/app/api/news", {}, "json");
 }
 
+function getSearchNews(q) {
+    return $.get("/app/api/search", {
+        q: q
+    }, "json");
+}
+
 function signup(name, message) {
     return $.post("/app/api/signup", {
         name: name,
@@ -20661,7 +20667,7 @@ function HomeController(page) {
     this.page = page;
     this.$page = $(page);
     this.$news = this.$page.find('.news');
-    this.$search = this.$page.find('.search > input');
+    this.$search = this.$page.find('.search .innerDiv');
 
     this.news = [];
     this.tpl = _.template(multiline(function() {
@@ -20705,8 +20711,8 @@ HomeController.prototype.onReady = function() {
             }
         }.bind(this));
     }.bind(this));
-    
-    this.$search.focus(function() {
+
+    this.$search.click(function() {
         App.load('search');
     });
 
@@ -20735,6 +20741,8 @@ HomeController.prototype.onReady = function() {
         });
         App.load('news-detail', detail);
     });
+
+
 }
 
 App.controller('news', HomeController);
@@ -20743,7 +20751,8 @@ function SearchController(page) {
     this.page = page;
     this.$page = $(page);
     this.$news = this.$page.find('.searchResult');
-
+    this.$search = this.$page.find('.searchDiv input');
+    this.$cancel = this.$page.find('.cancel');
 
     this.news = [];
     this.tpl = _.template(multiline(function() {
@@ -20752,44 +20761,66 @@ function SearchController(page) {
             <div class="title">
                 <span class="title-inner"><%= title %></span>
             </div>
-            <div class="detail">
-                <span class="date"><%= date %></span>
-                <% if (tags) { %>
-                    <% _.each(tags, function(tag) { %>
-                        <span class="tag"><%= tag %></span>
-                    <% }); %>
-                <% } %>
-            </div>
-            <div class="cover">
-                <img src='<%- cover %>'>
-            </div>
-            <div class="desc">
-                <%= desc %>
-            </div>
-         </li>
-         */
+        </li>
+        <div class="line"></div>
+        */
         console.log
     }));
 }
 
 SearchController.prototype.onReady = function() {
-
-    getNews().then(function(data) {
-        if (data.ret_code !== 0) {
-            return;
-        }
-
-        this.news = data.news;
-        this.news.forEach(function(item) {
-            var $item = $(this.tpl(item)).appendTo(this.$news);
-            if (item.headline) {
-                $item.addClass('headline');
-            }
-        }.bind(this));
-    }.bind(this));
-
-
     var self = this;
+    var newSearch = "";
+    var searchObj = null;
+
+    this.$cancel.click(function() {
+        App.back();
+    });
+
+    function Search(q) {
+        this.cancel = false;
+        this.q = q;
+
+        this.goSearch = function() {
+            getSearchNews(this.q).then(function(data) {
+                if (!this.cancel) {
+                    if (data.ret_code !== 0) {
+                        return;
+                    }
+
+                    self.news = data.news;
+                    self.news.forEach(function(item) {
+                        var $item = $(self.tpl(item)).appendTo(self.$news);
+                        if (item.headline) {
+                            $item.addClass('headline');
+                        }
+                    }.bind(this));
+                }
+            }.bind(this));
+        }
+    }
+
+    this.$search[0].addEventListener('input', function() {
+        var q = self.$search.val().trim();
+
+        if (q != newSearch) {
+            if (searchObj) {
+                searchObj.cancel = true;
+                searchObj = null;
+            }
+
+            searchObj = new Search(q);
+            if (self.$news.children()) {
+                self.$news.children().remove();
+            }
+            self.news = null;
+            newSearch = q;
+            if (newSearch != "") {
+                searchObj.goSearch();
+            }
+        }
+    });
+
     this.$news.on('click', 'li', function() {
         var $this = $(this);
         var id = $this.data('id');
@@ -20805,8 +20836,8 @@ SearchController.prototype.onReady = function() {
         if (!detail) {
             return;
         }
-
         App.load('news-detail', detail);
+        App.removeFromStack(1, 2);
     });
 }
 

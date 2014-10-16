@@ -92,10 +92,9 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 20px;
-    margin-bottom: 20px;
 }
 
-.app-page.home > .app-content .search > input[type=text] {
+.app-page.home > .app-content .search > div {
     padding: 6px 12px;
     display: block;
     width: 100%;
@@ -104,19 +103,14 @@ body {
     background: url(../images/search-bg.png) center center no-repeat transparent;
     background-size: auto 70%;
     font-size: 14px;
+    height: 28px;
 }
 
-.app-page.home > .app-content .search > input[type=text]:hover {
-    outline: none;
-    color: #ccc;
-    background-image: none;
-}
-
-.app-page.home > .app-content > .news {
+.app-page.home > .app-content .news {
     padding: 20px 10px 0px;
 }
 
-.app-page.home > .app-content > .news > li {
+.app-page.home > .app-content .news > li {
     list-style: none;
     position: relative;
     background: #f9f9f9;
@@ -127,62 +121,72 @@ body {
     padding: 15px 10px 30px;
 }
 
-.app-page.search > .app-content .search > input[type=text]:hover {
+.app-page.search > .app-content .banner {
+    background-color: #5fa647;
+    width: 100%;
+    float: left;
+
+    .occupy {
+        width: 5%;
+        height: 9px;
+        float: left;
+    }
+}
+
+.app-page.search > .app-content .searchDiv > input[type=text]:hover {
     outline: none;
     color: #ccc;
     background-image: none;
 }
 
-.app-page.search > .app-content .search {
-    background: #297a1b;
-    border: 1px solid #5fa647;
+.app-page.search > .app-content .searchDiv {
+    background: #fff;
     border-radius: 8px;
-
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: inline-block;
+    margin-right: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
     width: 75%;
 }
 
-.app-page.search > .app-content .search > input[type=text] {
+.app-page.search > .app-content .searchDiv img {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+.app-page.search > .app-content .searchDiv > input[type=text] {
     padding: 6px 12px;
-    display: block;
+    display: inline-block;
     box-sizing: border-box;
     border: none;
-    background: url(../images/search-bg.png) center center no-repeat transparent;
     background-size: auto 70%;
     font-size: 14px;
+    width: 85%;
 }
 
-.app-page.search > .app-content .search + span {
-    width: 25%;
+.app-page.search > .app-content .cancel {
+    border: 0;
+    background: #5fa647;
+    margin-top: 13px;
+    float: right;
+    width: 20%;
+    text-align: center;
+    color: #fff;
 }
 
-.app-page.search > .app-content > .news > li:after {
-    display: block;
-    position: absolute;
-    background: url(../images/news-bottom.png) center center no-repeat transparent;
-    bottom: -1px;
-    right: -1px;
-    width: 180px;
-    height: 30px;
-    background-size: 100% 100%;
-    content: " ";
+.app-page.search > .app-content ul.searchResult {
+    margin-top: 48px;
 }
 
-.app-page.search > .app-content > .news > li:before {
-    display: block;
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    background: url(../images/sticker.png) center center no-repeat transparent;
-    width: 80px;
-    margin-left: -40px;
-    height: 30px;
-    background-size: 100%;
-    content: " ";
+.app-page.search > .app-content .searchResult > li {
+    padding: 10px;
+}
+
+.app-page.search > .app-content .searchResult .line{
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
 }
 
 .app-page.detail form {
@@ -419,7 +423,7 @@ body {
 }
 
 .app-page.login, .app-page.resume,
-.app-page.aboutme, .app-page.feedback, .app-page.detail {
+.app-page.aboutme, .app-page.feedback, .app-page.detail, .app-page.search {
     z-index: 1050;
 }
 

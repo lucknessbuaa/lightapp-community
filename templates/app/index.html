@@ -25,7 +25,7 @@
     <div class="app-page home" data-page="news">
         <div class="app-content">
             <div class="search">
-                <input type="text">
+                <div class="innerDiv"></div>
             </div>
             <ul class="news">
             </ul>
@@ -34,10 +34,14 @@
 
     <div class="app-page search transparent" data-page="search">
         <div class="app-content">
-            <div class="search">
-                <input type="text">
+            <div class="banner">
+                <div class="occupy"></div>
+                <div class="searchDiv">
+                    <img src="{{ STATIC_URL }}images/search.png"/>
+                    <input type="text" placeholder="搜索公告信息" />
+                </div>
+                <div class="cancel" data-back >取消</div>
             </div>
-            <span data-back>取消</span>
             <ul class="searchResult">
             </ul>
         </div>
